@@ -1,0 +1,22 @@
+[package]
+name = "less-delay"
+version = "0.1.0"
+authors = []
+edition = "2021"
+
+[package.metadata.skyline]
+titleid = "01006A800016E000" # Smash Ultimate
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+skyline = "0.2.0"
+skyline_ex = { package = "skyline", git = "https://github.com/Skyline-ex/skylinex" }
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+lto = true
