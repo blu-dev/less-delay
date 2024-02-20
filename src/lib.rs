@@ -23,14 +23,14 @@ unsafe fn set_interval_2(ctx: &mut InlineCtx) {
 
 static mut RUN: AtomicBool = AtomicBool::new(false);
 
-#[skyline::hook(offset = 0x380f9e4, inline)]
+#[skyline::hook(offset = 0x3810664, inline)]
 unsafe fn vsync_count_thread(_: &skyline::hooks::InlineCtx) {
     RUN.store(true, Ordering::SeqCst);
 }
 
 static mut DUMMY_BLOCK: [u8; 0x100] = [0; 0x100];
 
-#[skyline::hook(offset = 0x3746afc, inline)]
+#[skyline::hook(offset = 0x374777c, inline)]
 unsafe fn run_scene_update(_: &skyline::hooks::InlineCtx) {
     while !RUN.swap(false, Ordering::SeqCst) {
         skyline::nn::hid::GetNpadFullKeyState(DUMMY_BLOCK.as_mut_ptr() as _, &0);
